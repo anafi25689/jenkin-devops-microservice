@@ -5,10 +5,18 @@ pipeline {
             // optional: args '-v /tmp:/tmp' // لإضافة معاملات إضافية إذا لزم الأمر
         }
     }
+
+	environment {
+		dockerHome = tool 'myDeocker'
+		mavenHome = tool 'myMaven'
+		PATH = "$dockerHome/bin:$mavenHome/bin$PATH"
+
+	}
     stages {
         stage ('Build') {
             steps {
                 sh 'mvn --version' // عرض إصدار Maven
+				sh 'docker version' // عرض إصدار Docker
                 echo "Build"
             }
         }
