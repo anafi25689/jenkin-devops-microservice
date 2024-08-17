@@ -1,33 +1,26 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.6.3'
-            // optional: args '-v /tmp:/tmp' // لإضافة معاملات إضافية إذا لزم الأمر
-        }
+    agent any
+    environment {
+        dockerHome = tool 'myDocker'    // تأكد من أن هذا الإسم يطابق ما تم تعريفه في Jenkins Global Tool Configuration
+        mavenHome = tool 'myMaven'      // تأكد من أن هذا الإسم يطابق ما تم تعريفه في Jenkins Global Tool Configuration
+        PATH = "${dockerHome}/bin:${mavenHome}/bin:${PATH}"  // تأكد من إضافة `:` بين المسارات
     }
-
-	environment {
-		dockerHome = tool 'myDocker'
-		mavenHome = tool 'myMaven'
-		PATH = "$dockerHome/bin:$mavenHome/bin$PATH"
-
-	}
     stages {
-        stage ('Build') {
+        stage('Build') {
             steps {
-                sh 'mvn --version' // عرض إصدار Maven
-				sh 'docker version' // عرض إصدار Docker
+                sh 'mvn --version'   // عرض إصدار Maven
+                sh 'docker version' // عرض إصدار Docker
                 echo "Build"
             }
         }
 
-        stage ('Test') {
+        stage('Test') {
             steps {
                 echo "Test"
             }
         }
 
-        stage ('Integration Test') {
+        stage('Integration Test') {
             steps {
                 echo "Integration Test"
             }
