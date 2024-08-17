@@ -1,28 +1,23 @@
-//devclaratve
-
 pipeline {
-	agent any
-	stages {
+    agent any
+    stages {
 
-		satege ('Build')
-		{
-			steps {
-				echo "Build"
-			}
-		}
-		satege ('Test')
-		{
-			steps {
-				echo "Test"
-			}
-		}
-		satege ('Intgration Test')
-		{
-			steps {
-				echo "Intgration Test"
+        stage ('Build') {
+            steps {
+                echo "Build"
+            }
+        }
 
-			}
-		}
-	}
-	
+        stage ('Test') {
+            steps {
+                echo "Test"
+            }
+        }
+
+        stage ('Integration Test') {
+            steps {
+                echo "Integration Test"
+            }
+        }
+    }
 }
