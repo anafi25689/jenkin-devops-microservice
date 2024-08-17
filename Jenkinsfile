@@ -20,14 +20,15 @@ pipeline {
             }
         }
     } post {
-		always {
-			echo 'I Am Fine'
-		}
-		success {
-			echo 'I run will I was successfull'
-		}
-		faliure {
-			echo 'I run will you fail'
-		}
-	}
+    	always {
+        echo 'I Am Fine'
+    	}
+    	success {
+        echo 'I ran because I was successful'
+    	}
+    	ذfailure {  // تم تصحيح الكلمة هنا
+        echo 'I ran because you failed'
+    	}
+}
+
 }
