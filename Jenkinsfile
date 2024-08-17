@@ -19,16 +19,16 @@ pipeline {
                 echo "Integration Test"
             }
         }
-    } post {
-    	always {
-        echo 'I Am Fine'
-    	}
-    	success {
-        echo 'I ran because I was successful'
-    	}
-    	failure {  // تم تصحيح الكلمة هنا
-        echo 'I ran because you failed'
-    	}
-}
-
+    }
+    post {
+        always {
+            echo 'I Am Fine'
+        }
+        success {
+            echo 'I ran because I was successful'
+        }
+        failure {  // تصحيح الكلمة هنا
+            echo 'I ran because you failed'
+        }
+    }
 }
