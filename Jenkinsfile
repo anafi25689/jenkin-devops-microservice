@@ -1,11 +1,14 @@
 pipeline {
-    //agent any
-	agent {docker {image 'maven:3.6.3'}}
+    agent {
+        docker {
+            image 'maven:3.6.3'
+            // optional: args '-v /tmp:/tmp' // لإضافة معاملات إضافية إذا لزم الأمر
+        }
+    }
     stages {
-
         stage ('Build') {
             steps {
-				sh 'mv --version' // maven version
+                sh 'mvn --version' // عرض إصدار Maven
                 echo "Build"
             }
         }
@@ -29,7 +32,7 @@ pipeline {
         success {
             echo 'I ran because I was successful'
         }
-        failure {  // تصحيح الكلمة هنا
+        failure {
             echo 'I ran because you failed'
         }
     }
