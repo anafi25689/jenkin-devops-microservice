@@ -6,23 +6,29 @@ pipeline {
         PATH = "${dockerHome}/bin:${mavenHome}/bin:${PATH}"  // تأكد من إضافة `:` بين المسارات
     }
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
                 sh 'mvn --version'   // عرض إصدار Maven
                 sh 'docker version' // عرض إصدار Docker
                 echo "Build"
             }
         }
+		stage('Compile')
+		{
+			steps{
+				sh "mvn clearn compile"
+			}
+		}
 
         stage('Test') {
             steps {
-                echo "Test"
+                sh "mvn test"
             }
         }
 
         stage('Integration Test') {
             steps {
-                echo "Integration Test"
+                sh "nvm failsafe:integration-test failsafe:verify"
             }
         }
     }
