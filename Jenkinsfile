@@ -1,70 +1,48 @@
 pipeline {
     agent any
     environment {
-        dockerHome = tool 'myDocker'    // تأكد من أن هذا الإسم يطابق ما تم تعريفه في Jenkins Global Tool Configuration
-        mavenHome = tool 'myMaven'      // تأكد من أن هذا الإسم يطابق ما تم تعريفه في Jenkins Global Tool Configuration
-        PATH = "${dockerHome}/bin:${mavenHome}/bin:${PATH}"  // تأكد من إضافة `:` بين المسارات
+        dockerHome = tool 'myDocker'
+        mavenHome = tool 'myMaven'
+        PATH = "${dockerHome}/bin:${mavenHome}/bin:${PATH}"
     }
     stages {
         stage('Checkout') {
             steps {
-                sh 'mvn --version'   // عرض إصدار Maven
-                sh 'docker version' // عرض إصدار Docker
+                sh 'mvn --version'
+                sh 'docker version'
                 echo "Build"
             }
         }
-		stage('Compile')
-		{
-			steps{
-				sh "mvn clean compile"
-			}
-		}
-
+        stage('Compile') {
+            steps {
+                sh "mvn clean compile"
+            }
+        }
         stage('Test') {
             steps {
                 sh "mvn test"
             }
         }
-
         stage('Integration Test') {
             steps {
-                sh "nvm failsafe:integration-test failsafe:verify"
+                sh "mvn failsafe:integration-test failsafe:verify"
             }
         }
-
-        stage('Build Docker Image')
-        {
-             steps {
-
-                script{
-
-                    dockerImage = docker.Build(<dockerHubID and repo name>:${env.BUILD_TAG})
-
-
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    dockerImage = docker.build("${dockerHubID}/${repoName}:${env.BUILD_TAG}")
                 }
-                
             }
-
         }
-
-        stage('Push Docker Image')
-        {
-             steps {
-
-                script
-                {
-                    docker.withRegistry('','anafi')//Docker hub Cradential 
-                    {
-                        docker.Push
-                        duckerImage.Push('latest')
-
+        stage('Push Docker Image') {
+            steps {
+                script {
+                    docker.withRegistry('', 'anafi') {
+                        dockerImage.push('latest')
                     }
                 }
-
-                
-                
             }
-
         }
     }
     post {
