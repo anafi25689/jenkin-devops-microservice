@@ -31,6 +31,41 @@ pipeline {
                 sh "nvm failsafe:integration-test failsafe:verify"
             }
         }
+
+        stage('Build Docker Image')
+        {
+             steps {
+
+                script{
+
+                    dockerImage = docker.Build(<dockerHubID and repo name>:${env.BUILD_TAG})
+
+
+                }
+                
+            }
+
+        }
+
+        stage('Push Docker Image')
+        {
+             steps {
+
+                script
+                {
+                    docker.withRegistry('','anafi')//Docker hub Cradential 
+                    {
+                        docker.Push
+                        duckerImage.Push('latest')
+
+                    }
+                }
+
+                
+                
+            }
+
+        }
     }
     post {
         always {
