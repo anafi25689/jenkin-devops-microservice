@@ -1,0 +1,6 @@
+/home/anafi/devops-master-class/jenkin-devops-microservice/currency-exchange-microservice/src/test/java/com/in28minutes/microservices/currencyexchangeservice/CurrencyExchangeServiceApplicationTests.java
+/home/anafi/devops-master-class/jenkin-devops-microservice/currency-exchange-microservice/src/test/java/com/in28minutes/microservices/currencyexchangeservice/cucumber/CucumberSpringContextConfiguration.java
+/home/anafi/devops-master-class/jenkin-devops-microservice/currency-exchange-microservice/src/test/java/com/in28minutes/microservices/currencyexchangeservice/cucumber/CurrencyExchangeSteps.java
+/home/anafi/devops-master-class/jenkin-devops-microservice/currency-exchange-microservice/src/test/java/com/in28minutes/microservices/currencyexchangeservice/resource/CurrencyExchangeControllerTest.java
+/home/anafi/devops-master-class/jenkin-devops-microservice/currency-exchange-microservice/src/test/java/com/in28minutes/microservices/currencyexchangeservice/cucumber/HelloWorldSteps.java
+/home/anafi/devops-master-class/jenkin-devops-microservice/currency-exchange-microservice/src/test/java/com/in28minutes/microservices/currencyexchangeservice/cucumber/RunCucumberIntegrationTestCase.java
