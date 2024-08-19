@@ -118,12 +118,12 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>org.jacoco</groupId>
-			<artifactId>org.jacoco.agent</artifactId>
-			<version>${jacoco.version}</version>
-			<classifier>runtime</classifier>
-			<scope>test</scope>
+    		<groupId>org.jacoco</groupId>
+    		<artifactId>org.jacoco.agent</artifactId>
+    		<version>0.8.12</version> <!-- تأكد من استخدام أحدث إصدار -->
+    		<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>org.sonarsource.java</groupId>
 			<artifactId>sonar-jacoco-listeners</artifactId>
